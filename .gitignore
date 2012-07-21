@@ -1,6 +1,10 @@
-# rcov generated
+# generated
+libucsc.a
+libucsc.1.dylib
+/ext/ucsc-util/Rakefile
+
+# simplecov generated
 coverage
-coverage.data
 
 # rdoc generated
 rdoc

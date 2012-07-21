@@ -1,6 +1,32 @@
 = bio-ucsc-util
 
-Description goes here.
+
+Ruby FFI binding and implementation of the ucsc utilities. The C source can be found here:
+http://hgdownload.cse.ucsc.edu/admin/
+
+More information about the ucsc genome browser data formats can be found here:
+http://genome.ucsc.edu/FAQ/FAQformat.html
+
+The following utilities are available
+
+- bedGraphToBigWig
+- wigToBigWig
+- bigWigInfo
+- bigWigSummary
+
+== Usage
+
+The Util class is used for the base conversion utilities:
+
+	Bio::Ucsc::Util.wigToBigWig('my.wig','chrom.sizes','out.bw')
+
+The BigWig class can be used to open and interact with the binary files:
+
+	bw = Bio::Ucsc::BigWig.open('out.bw')
+	bw.info
+	bw.summary('chr1',1,10,10,'mean')
+
+For more details see the Bio::Ucsc::Util and Bio::Ucsc::BigWig classes
 
 == Contributing to bio-ucsc-util
  
@@ -11,6 +37,10 @@ Description goes here.
 * Commit and push until you are happy with your contribution.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Dependencies
+
+* FFI (github.com/ffi/ffi)
 
 == Copyright
 
