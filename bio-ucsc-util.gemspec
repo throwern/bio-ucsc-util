@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bio-ucsc-util.gemspec",
     "ext/ucsc-util/README",
     "ext/ucsc-util/makefile",
     "ext/ucsc-util/mkrf_conf.rb",
