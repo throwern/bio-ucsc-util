@@ -106,7 +106,7 @@ module Bio
       # bbi
       attach_function :bbiChromList, [:pointer], :pointer                                                     # *bbiFile ; BbiChromInfo*
       attach_function :bbiChromSize, [:pointer,:pointer], :int32                                              # *bbiFile, chrom ; size
-      attach_function :bbiFileClose, [:pointer], :void                                                        # *bbiFile
+      attach_function :bbiFileClose, [:pointer], :void                                                        # **bbiFile
       attach_function :bbiTotalSummary, [:pointer], BbiSummaryElement.by_value                                # **bbiFile
       attach_function :bbiSummaryTypeFromString, [:string], BbiSummaryType                                    # summaryType
       # bigwig

@@ -5,20 +5,32 @@ These folders have been extracted into an archive for use by this rubygem.
 The data was retrieved from:
 http://hgdownload.cse.ucsc.edu/admin/jksrc.v268.zip
 
-3 of the original source files have modified code that relies on static (private) methods. New versions need to incorporate these changes.
-See bigWigSmooth in:
--inc/bwgInternal.h
--inc/bigWig.h
--lib/bwgCreate.c
-
-Also converted **environ calls to support OSX shared library in cheapcgi.h/c
-#if defined __environ
-    extern char **environ;
-    INLINE char **getEnviron() {return environ;}
-#else
-    #include <crt_externs.h>
-    INLINE char **getEnviron() { return (*_NSGetEnviron()); }
-#endif
+Some modifications of the code may be required for this rubygem to operate:
+1.)
+	Some original source files have additional functions defined that rely on static (private) methods. New versions 
+	need to incorporate these changes. They are required in order to build the additional bigWigSmooth utility.
+		bigWigFileSmooth
+		bwgSmoothAvg
+		bwgSmoothProbe
+		testInterval
+		setupVariableBigWig
+	Files Altered:
+		inc/bwgInternal.h
+		inc/bigWig.h
+		lib/bwgCreate.c
+	Additional Utility:
+		utils/bigWigSmooth/bigWigSmooth.c
+2.)	
+	cheapcgi.h/c has a conditional **environ definition to support shared libraries on OSX
+		#ifndef __APPLE__
+		    extern char **environ;
+		    INLINE char **getEnviron() {return environ;}
+		#else
+		    #include <crt_externs.h>
+		    INLINE char **getEnviron() { return (*_NSGetEnviron()); }
+		#endif
+3.)
+	added line: 1086 - lineFileClose(&lf); bwgParseBigWig() in bwgCreate.c. Method was leaking open file descriptors
 
 ---Original README below
 

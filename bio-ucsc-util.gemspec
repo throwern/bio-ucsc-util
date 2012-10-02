@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "bio-ucsc-util"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["throwern"]
-  s.date = "2012-08-07"
-  s.description = "Ruby FFI binding and implmentation of the ucsc utilities: bigWigInfo, bigWigSummary and wigToBigWig"
+  s.date = "2012-10-02"
+  s.description = "Ruby FFI binding of the ucsc kent src. Implemented utilities include: bigWigInfo, bigWigSummary and wigToBigWig"
   s.email = "throwern@msu.edu"
   s.extensions = ["ext/ucsc-util/mkrf_conf.rb"]
   s.extra_rdoc_files = [
