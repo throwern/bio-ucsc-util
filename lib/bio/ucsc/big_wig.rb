@@ -37,10 +37,6 @@ module Bio
       end
       # closes the file
       def close
-        puts "@bbi_file=#{bbi_file}"
-        bound_bbi = Binding::BbiFile.new(bbi_file)
-        puts "Binding::BbiFile=#{bound_bbi}"
-        puts "Binding::to_ptr=#{bound_bbi.to_ptr}"
         if bbi_file
           bbi_ptr= FFI::MemoryPointer.new(:pointer)
           bbi_ptr.write_pointer(bbi_file)
