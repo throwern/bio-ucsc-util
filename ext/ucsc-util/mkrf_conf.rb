@@ -12,7 +12,7 @@ version.close
 Source = "ucsc-util-src-#{Version}.tgz"
 
 File.open(File.join(path,"Rakefile"),"w") do |rakefile|
-rakefile.write <<-RAKE
+rakefile.write <<-RUBY
 require 'rbconfig'
 require 'fileutils'
 include FileUtils::Verbose
@@ -59,6 +59,6 @@ end
 
 task :default => [:prepare,:compile,:clean]
   
-RAKE
+RUBY
   
 end

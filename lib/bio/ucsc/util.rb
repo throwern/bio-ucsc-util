@@ -47,6 +47,16 @@ module Bio
         Binding::bedGraphToBigWig(wig_file,chrom_file,block_size,items_per_slot,do_compress,big_wig_file)
         return BigWig.open(big_wig_file)
       end
+      
+      def self.bed_to_big_bed(bed_file, chrom_file, big_bed_file, opts={})
+        block_size = opts[:block_size]||256
+        items_per_slot = opts[:items_per_slot]||512
+        unc = opts[:unc]||false
+        as = opts[:as]||nil
+        do_compress = !unc
+        Binding::bbFileCreate(bed_file, chrom_file, block_size, items_per_slot, as, do_compress, big_bed_file)
+        return BigBed.open(big_bed_file)
+      end
     end
   end
 end

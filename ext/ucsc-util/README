@@ -5,7 +5,7 @@ These folders have been extracted into an archive for use by this rubygem.
 The data was retrieved from:
 http://hgdownload.cse.ucsc.edu/admin/jksrc.v268.zip
 
-Some modifications of the code may be required for this rubygem to operate:
+Some modification of the jksrc source code is required for this rubygem to operate:
 1.)
 	Some original source files have additional functions defined that rely on static (private) methods. New versions 
 	need to incorporate these changes. They are required in order to build the additional bigWigSmooth utility.
@@ -31,6 +31,8 @@ Some modifications of the code may be required for this rubygem to operate:
 		#endif
 3.)
 	added line: 1086 - lineFileClose(&lf); bwgParseBigWig() in bwgCreate.c. Method was leaking open file descriptors
+
+4.)	removed duplicate symbols main() and usage() from utility programs for shared library linking.
 
 ---Original README below
 

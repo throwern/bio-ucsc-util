@@ -92,6 +92,49 @@ module Bio
         end
       end
       
+      class BigBedInterval < FFI::Struct
+        include Enumerable
+        layout(
+        :next_ptr,  :pointer,	  # Next in list
+        :start,     :uint32,    # Range inside chromosome - half open zero based
+        :end,       :uint32,		        
+        :rest,      :string)	  # Rest of line. May be NULL
+        def next
+          if self[:next_ptr] == FFI::Pointer::NULL
+            nil
+          else
+            BigBedInterval.new(self[:next_ptr])
+          end
+        end
+      end
+      
+      ## LM - Local Memory pool
+      
+      # https://github.com/ffi/ffi/wiki/Pointers#passing-by-reference
+      # Use a a 1-element structure to pass by reference
+      class LmPtr < FFI::Struct
+        layout  :value, :pointer
+      end
+      
+      class Lm < FFI::Struct
+        layout(
+          :blocks, :pointer,
+          :blockSize, :size_t,
+          :allignMask, :size_t,
+          :allignAdd, :size_t
+        )
+      end
+      
+      # Used to automatically free memory in the lm (local_memory) pool using lmCleanup.
+      class LmPointerHelper
+        # This method will be called by FFI::AutoPointer::DefaultReleaser.
+        def self.release(ptr)
+          xptr = LmPtr.new
+          xptr[:value]=ptr
+          Binding::lmCleanup(xptr)
+        end
+      end
+          
       ## ENUMS
       
       # bbiSummaryType - way to summarize data
@@ -117,12 +160,26 @@ module Bio
       attach_function :isBigWig, [:string], :bool                                                                       # filename
       # utils
       attach_function :bedGraphToBigWig, [:string, :string, :int, :int, :bool, :string], :void                # inName, chromSizes, outName
+      
       # udc
       attach_function :udcDefaultDir, [], :string
       attach_function :udcSetDefaultDir, [:string], :void                                                     # path
       # hmmstats
       attach_function :calcStdFromSums, [:double, :double, :uint64], :double                                  # sum, sumSquares, n 
       attach_function :slCount, [:pointer], :int                                                              # *bbiChromList
+      
+      # Memory
+      attach_function :lmInit, [:int], :pointer                 # blockSize (0 for default); lm pointer
+      attach_function :lmCleanup, [LmPtr], :void             # **lm   
+      # bigBed
+      attach_function :bigBedFileOpen, [:string], :pointer      # filename; *bbiFile
+      attach_function :bigBedFileCheckSigs, [:string], :bool    # filename
+      attach_function :bigBedItemCount, [:pointer], :ulong_long     # bbiFile; bits64
+      # bed_file, chrom_file, block_size, items_per_slot, as, do_compress, big_bed_file
+      attach_function :bbFileCreate, [:string, :string, :int, :int, :string, :bool, :string], :void
+      # *bbiFile, chrom, start, end, maxItems, *interval_mem] ;bigBedInterval
+      attach_function :bigBedIntervalQuery, [:pointer, :pointer, :int, :int, :int, :pointer], BigBedInterval 
+      
     end
   end
 end

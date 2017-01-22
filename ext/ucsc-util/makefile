@@ -44,9 +44,9 @@ O = aliType.o annoColumn.o annoFilter.o annoFormatter.o annoFormatTab.o \
     wildcmp.o wormdna.o \
     xAli.o xa.o xap.o xenshow.o xmlEscape.o xp.o zlibFace.o
 
-vpath %.c ../utils/bedGraphToBigWig/
+vpath %.c ../utils/bedGraphToBigWig/ ../utils/bedToBigBed/
 
-XO = bedGraphToBigWig.o
+XO = bedGraphToBigWig.o bedToBigBed.o
 
 lib: libucsc.a
 	

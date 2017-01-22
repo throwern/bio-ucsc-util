@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bio-ucsc-util"
   gem.homepage = "http://github.com/throwern/bio-ucsc-util"
   gem.license = "MIT"
-  gem.summary = %Q{Ruby binding to the ucsc kent utilities}
-  gem.description = %Q{Ruby FFI binding of the ucsc kent src. Implemented utilities include: bigWigInfo, bigWigSummary and wigToBigWig}
+  gem.summary = %Q{Ruby binding to the ucsc kent utilities for bigWig and bigBed file formats}
+  gem.description = %Q{Ruby FFI binding of the ucsc kent src. Implemented utilities include: bigWigInfo, bigWigSummary, wigToBigWig, bedToBigBed and bigBedIntervalQuery}
   gem.email = "throwern@msu.edu"
   gem.authors = ["throwern"]
   # dependencies defined in Gemfile

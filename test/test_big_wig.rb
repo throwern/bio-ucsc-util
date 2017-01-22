@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestBioUcscUtil < Test::Unit::TestCase
+class TestBigWig < Test::Unit::TestCase
   include Bio::Ucsc
   TEST_BW = "test/1.bw"
   TEST_WIG = "test/1.wig"
