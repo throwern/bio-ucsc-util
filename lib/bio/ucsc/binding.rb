@@ -98,13 +98,16 @@ module Bio
         :next_ptr,  :pointer,	  # Next in list
         :start,     :uint32,    # Range inside chromosome - half open zero based
         :end,       :uint32,		        
-        :rest,      :string)	  # Rest of line. May be NULL
+        :rest,      :pointer)	  # Rest of line. May be NULL
         def next
           if self[:next_ptr] == FFI::Pointer::NULL
             nil
           else
             BigBedInterval.new(self[:next_ptr])
           end
+        end
+        def rest
+          self[:rest].read_string
         end
       end
       
