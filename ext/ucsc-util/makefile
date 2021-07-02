@@ -57,8 +57,8 @@ libucsc.so.1:$(O) $(XO)
 	$(CC) -shared -Wl,-soname,libucsc.so -pthread $(L) -o $@ $(O) $(XO) -lc 
 
 libucsc.1.dylib:$(O) $(XO)
-	libtool -dynamic -L/usr/X11/lib/ -g -lpthread $(L) -lc $(O) $(XO) -o $@
-	
+	$(CC) -dynamiclib -Wl,-single_module -pthread $(L) -o $@ $(O) $(XO) -lc
+
 clean:
 	rm -f ${O} $(XO) libucsc.a
 

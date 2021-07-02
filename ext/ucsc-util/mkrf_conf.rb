@@ -27,7 +27,7 @@ task :compile do
   # build libraries
   cd("ucsc-util-src-#{Version}/lib") do
     sh "make"
-    case Config::CONFIG['host_os']
+    case RbConfig::CONFIG['host_os']
       when /linux/
         sh "make libucsc.so.1"
         cp("libucsc.so.1","#{path_external}")

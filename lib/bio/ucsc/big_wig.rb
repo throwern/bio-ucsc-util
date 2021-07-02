@@ -167,7 +167,7 @@ module Bio
         # allocate the array
         summaryValues = FFI::MemoryPointer.new(:double,count)
         # initialize to all 'NaN'
-        summaryValues.write_array_of_type(:double,:write_string,["NaN"]*count)
+        summaryValues.write_array_of_double([Float::NAN]*count)
         # fill in with Summary Data
         Binding::bigWigSummaryArray(bbi_file, chrom, start, stop, Binding::bbiSummaryTypeFromString(type),count,summaryValues)
         return summaryValues.read_array_of_double(count)

@@ -85,19 +85,19 @@ class TestBigBed < Test::Unit::TestCase
       
       assert_equal 1, c1_1[:start]
       assert_equal 2, c1_1[:end]
-      assert_equal "1", c1_1[:rest]
+      assert_equal "1", c1_1.rest
       
       assert_equal 3, c1_3[:start]
       assert_equal 4, c1_3[:end]
-      assert_equal "5", c1_3[:rest]
+      assert_equal "5", c1_3.rest
       
       assert_equal 1, c2_1[:start]
       assert_equal 2, c2_1[:end]
-      assert_equal "1", c2_1[:rest]
+      assert_equal "1", c2_1.rest
       
       assert_equal 5, c2_last[:start]
       assert_equal 6, c2_last[:end]
-      assert_equal "1", c2_last[:rest]
+      assert_equal "1", c2_last.rest
     end
   end
 end

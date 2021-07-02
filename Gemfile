@@ -13,6 +13,6 @@ end
 
 group :development do
   gem "rdoc"
-  gem "bundler"
+  gem "bundler", ">= 2.2.10"
   gem "jeweler", "~> 2.1.0"
 end
