@@ -75,7 +75,7 @@ GEM
     test-unit (3.4.4)
       power_assert
     thread_safe (0.3.6)
-    tzinfo (0.3.60)
+    tzinfo (0.3.61)
 
 PLATFORMS
   ruby
