@@ -4,7 +4,7 @@ gem "ffi", "~> 1.9"
 
 group :test do
   gem 'minitest', "~> 4"
-  gem 'rack', "< 2"
+  gem 'rack', "< 3"
   gem 'test-unit', "~> 3.2"
   gem "shoulda", "~> 3.5"
   gem 'shoulda-context', "~> 1.2"
